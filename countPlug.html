@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="jQuery/jquery.min.js"></script>
+<!-- <link rel="stylesheet" href="jQuerymobile/jquery.mobile-1.4.5.min.css"> -->
+<!-- <script type="text/javascript" src="jQuerymobile/jquery.mobile-1.4.5.min.js"></script> -->
+<style>
+#test{ color: #f00; }
+</style>
+</head>
+<script>
+window.onload=function(){
+		var oIpt1=document.getElementById("ipt1");//获取开始元素id
+		var oIpt2=document.getElementById("ipt2");//获取停止元素id
+		var t;
+		var temp=0;
+		var i=0;
+		oIpt1.onclick=function(){//开始或继续点击事件
+			clearInterval(t);//清除定时器防止频繁点击
+			t=setInterval(function(){//开个定时器，每隔半秒钟计数加1，如果到100停止计时器，函数返回；
+			if(i==101){
+				clearInterval(t);
+				return;
+			}else{
+				document.getElementById("test").innerHTML=temp;
+				i++;
+				temp=i;//存储当前计数数值
+			}
+		},500);
+		}
+		oIpt2.onclick=function(){
+			clearInterval(t);//停止计时
+		}
+		
+}
+</script>
+<body>
+	<span>数到100：</span><span id="test">0</span>
+	<input type="button" id="ipt1" value="start/go">
+	<input type="button" id="ipt2" value="stop">
+</body>
+</html>
